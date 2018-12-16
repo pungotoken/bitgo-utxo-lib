@@ -135,5 +135,58 @@ module.exports = {
     scriptHash: 0x32,
     wif: 0xb0,
     coin: coins.LTC
+  },
+  komodo: {
+    messagePrefix: '\x18Komodo Signed Message:\n',
+    bech32: 'bc',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x3c,
+    scriptHash: 0x55,
+    wif: 0xbc,
+    // This parameter was introduced in version 3 to allow soft forks, for version 1 and 2 transactions we add a
+    // dummy value.
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb
+    },
+    coin: coins.ZEC
+  },
+  bithereum: { 
+    messagePrefix: '\x18Bithereum Signed Message:\n',
+    bech32: 'bth',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x25,
+    scriptHash: 0x40,
+    wif: 0x80,
+    coin: coins.BTG,
+    forkId: 0x55 /* 85 */
+  },
+  zelcash: {
+    messagePrefix: '\x18ZelCash Signed Message:\n',
+    bech32: 'bc',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x1cb8,
+    scriptHash: 0x1cbd,
+    wif: 0x80,
+    // This parameter was introduced in version 3 to allow soft forks, for version 1 and 2 transactions we add a
+    // dummy value.
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb
+    },
+    coin: coins.ZEC
   }
 }
