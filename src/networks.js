@@ -204,8 +204,8 @@ module.exports = {
     consensusBranchId: {
       1: 0x00,
       2: 0x00,
-      3: 0x5ba81b19,
-      4: 0x76b809bb
+      3: 0x6f76727a,
+      4: 0x7361707a
     },
     coin: coins.ZEC
   },
