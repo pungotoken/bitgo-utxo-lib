@@ -831,11 +831,8 @@ TransactionBuilder.prototype.sign = function (vin, keyPair, redeemScript, hashTy
 
     debug('Produced signature (r: %s, s: %s)', signature.r, signature.s)
     
-    if (coins.isBithereum(this.network)) {
-      input.signatures[i] = signature.toScriptSignatureBTH(hashType)
-    } else {
-      input.signatures[i] = signature.toScriptSignature(hashType)
-    }
+    input.signatures[i] = signature.toScriptSignature(hashType)
+    
     return true
   })
 

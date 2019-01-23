@@ -86,17 +86,8 @@ ECSignature.prototype.toRSBuffer = function (buffer, offset) {
 
 ECSignature.prototype.toScriptSignature = function (hashType) {
   var hashTypeMod = hashType & ~0xc0
-  if (hashTypeMod <= 0 || hashTypeMod >= 4) throw new Error('Invalid hashType ' + hashType)
-
-  var hashTypeBuffer = Buffer.alloc(1)
-  hashTypeBuffer.writeUInt8(hashType, 0)
-
-  return Buffer.concat([this.toDER(), hashTypeBuffer])
-}
-
-ECSignature.prototype.toScriptSignatureBTH = function (hashType) {
-  var hashTypeMod = hashType & ~0xc0
-  if (hashTypeMod <= 0 || hashTypeMod >= 18) throw new Error('Invalid hashType ' + hashType)
+  // Bithereum special case
+  if ((hashTypeMod <= 0 || hashTypeMod >= 4) && hashTypeMod != 17) throw new Error('Invalid hashType ' + hashType)
 
   var hashTypeBuffer = Buffer.alloc(1)
   hashTypeBuffer.writeUInt8(hashType, 0)

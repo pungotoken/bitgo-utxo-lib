@@ -166,7 +166,7 @@ module.exports = {
     pubKeyHash: 0x19,
     scriptHash: 0x28,
     wif: 0x80,
-    coin: coins.BTG,
+    coin: coins.BTH,
     forkId: 0x55 /* 85 */
   },
   zelcash: {
