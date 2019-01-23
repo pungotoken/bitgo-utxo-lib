@@ -55,6 +55,7 @@ Transaction.SIGHASH_NONE = 0x02
 Transaction.SIGHASH_SINGLE = 0x03
 Transaction.SIGHASH_ANYONECANPAY = 0x80
 Transaction.SIGHASH_BITCOINCASHBIP143 = 0x40
+Transaction.SIGHASH_FORKID_BTH = 0x10
 Transaction.ADVANCED_TRANSACTION_MARKER = 0x00
 Transaction.ADVANCED_TRANSACTION_FLAG = 0x01
 
@@ -936,6 +937,33 @@ Transaction.prototype.hashForGoldSignature = function (inIndex, prevOutScript, i
   if (sigVersion || fUseForkId) {
     if (types.Null(inAmount)) {
       throw new Error('Bitcoin Cash sighash requires value of input to be signed.')
+    }
+    return this.hashForWitnessV0(inIndex, prevOutScript, inAmount, nForkHashType)
+  } else {
+    return this.hashForSignature(inIndex, prevOutScript, nForkHashType)
+  }
+}
+
+/**
+ * Hash transaction for signing a specific input for Bithereum.
+ */
+Transaction.prototype.hashForBTHSignature = function (inIndex, prevOutScript, inAmount, hashType, sigVersion) {
+  typeforce(types.tuple(types.UInt32, types.Buffer, /* types.UInt8 */ types.Number, types.maybe(types.UInt53)), arguments)
+
+  // Bithereum also implements segregated witness
+  // therefore we can pull out the setting of nForkHashType
+  // and pass it into the functions.
+
+  var nForkHashType = hashType
+  var fUseForkId = (hashType & Transaction.SIGHASH_FORKID_BTH) > 0
+  if (fUseForkId) {
+    nForkHashType |= this.network.forkId << 8
+  }
+
+  // BIP143 sighash activated in BitcoinCash via 0x40 bit
+  if (sigVersion || fUseForkId) {
+    if (types.Null(inAmount)) {
+      throw new Error('Bithereum sighash requires value of input to be signed.')
     }
     return this.hashForWitnessV0(inIndex, prevOutScript, inAmount, nForkHashType)
   } else {

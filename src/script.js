@@ -188,7 +188,12 @@ function isDefinedHashType (hashType) {
   var hashTypeMod = hashType & ~0xc0
 
 // return hashTypeMod > SIGHASH_ALL && hashTypeMod < SIGHASH_SINGLE
-  return hashTypeMod > 0x00 && hashTypeMod < 0x04
+// Bithereum special case
+  if (hashType == 17) {
+    return hashTypeMod > 0x00 && hashTypeMod < 0x12
+  } else {
+    return hashTypeMod > 0x00 && hashTypeMod < 0x04
+  }
 }
 
 function isCanonicalSignature (buffer) {

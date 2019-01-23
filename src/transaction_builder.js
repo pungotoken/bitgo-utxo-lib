@@ -203,6 +203,9 @@ function fixMultisigOrder (input, transaction, vin, value, network) {
         case coins.BTG:
           hash = transaction.hashForGoldSignature(vin, input.signScript, value, parsed.hashType)
           break
+        case coins.BTH:
+          hash = transaction.hashForBTHSignature(vin, input.signScript, value, parsed.hashType)
+          break
         case coins.ZEC:
           if (value === undefined) {
             return false
@@ -797,6 +800,9 @@ TransactionBuilder.prototype.sign = function (vin, keyPair, redeemScript, hashTy
   if (coins.isBitcoinGold(this.network)) {
     signatureHash = this.tx.hashForGoldSignature(vin, input.signScript, witnessValue, hashType, input.witness)
     debug('Calculated BTG sighash (%s)', signatureHash.toString('hex'))
+  } else if (coins.isBithereum(this.network)) {
+    signatureHash = this.tx.hashForBTHSignature(vin, input.signScript, witnessValue, hashType, input.witness)
+    debug('Calculated BTH sighash (%s)', signatureHash.toString('hex'))
   } else if (coins.isBitcoinCash(this.network)) {
     signatureHash = this.tx.hashForCashSignature(vin, input.signScript, witnessValue, hashType)
     debug('Calculated BCH sighash (%s)', signatureHash.toString('hex'))
@@ -824,8 +830,12 @@ TransactionBuilder.prototype.sign = function (vin, keyPair, redeemScript, hashTy
     if (Buffer.isBuffer(signature)) signature = ECSignature.fromRSBuffer(signature)
 
     debug('Produced signature (r: %s, s: %s)', signature.r, signature.s)
-
-    input.signatures[i] = signature.toScriptSignature(hashType)
+    
+    if (coins.isBithereum(this.network)) {
+      input.signatures[i] = signature.toScriptSignatureBTH(hashType)
+    } else {
+      input.signatures[i] = signature.toScriptSignature(hashType)
+    }
     return true
   })
 

@@ -5,6 +5,7 @@ const coins = {
   BCH: 'bch',
   BTC: 'btc',
   BTG: 'btg',
+  BTH: 'bth',
   LTC: 'ltc',
   ZEC: 'zec',
   DASH: 'dash'
@@ -22,6 +23,10 @@ coins.isBitcoinGold = function (network) {
   return typeforce.value(coins.BTG)(network.coin)
 }
 
+coins.isBithereum = function (network) {
+  return typeforce.value(coins.BTH)(network.coin)
+}
+
 coins.isLitecoin = function (network) {
   return typeforce.value(coins.LTC)(network.coin)
 }
@@ -34,6 +39,7 @@ coins.isValidCoin = typeforce.oneOf(
   coins.isBitcoin,
   coins.isBitcoinCash,
   coins.isBitcoinGold,
+  coins.isBithereum,
   coins.isLitecoin,
   coins.isZcash
 )

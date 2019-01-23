@@ -163,8 +163,8 @@ module.exports = {
       public: 0x0488b21e,
       private: 0x0488ade4
     },
-    pubKeyHash: 0x25,
-    scriptHash: 0x40,
+    pubKeyHash: 0x19,
+    scriptHash: 0x28,
     wif: 0x80,
     coin: coins.BTG,
     forkId: 0x55 /* 85 */
