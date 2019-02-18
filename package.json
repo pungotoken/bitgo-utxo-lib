@@ -50,7 +50,7 @@
     "typeforce": "^1.11.3",
     "varuint-bitcoin": "^1.0.4",
     "wif": "^2.0.1",
-    "groestl-hash-js": "https://github.com/TheTrunk/groestl-hash-js"
+    "groestl-hash-js": "git://github.com/TheTrunk/groestl-hash-js#master"
   },
   "devDependencies": {
     "bip39": "^2.3.0",
