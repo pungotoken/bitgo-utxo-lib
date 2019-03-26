@@ -353,4 +353,17 @@ module.exports = {
     coin: coins.ZEC,
     hashFunctions: hashFunctions
   },
+  genesis: {
+    messagePrefix: "\x18Genesis Signed Message: \n",
+    bech32: "genx",
+    bip32: {
+      public: 0x53414645,
+      private: 0x53616665,
+    },
+    pubKeyHash: 0x1c,
+    scriptHash: 0x3f,
+    wif: 0x30,
+    coin: coins.BTC,
+    hashFunctions: hashFunctions
+  },
 }
