@@ -60,6 +60,8 @@ HDNode.fromSeedHex = function (hex, network) {
 HDNode.fromBase58 = function (string, networks) {
   if (Array.isArray(networks)) {
     networks = networks[0] || NETWORKS.bitcoin
+  } else {
+    networks = networks || NETWORKS.bitcoin
   }
   var buffer = bs58checkBase(networks.hashFunctions.address).decode(string)
   if (buffer.length !== 78) throw new Error('Invalid buffer length')
