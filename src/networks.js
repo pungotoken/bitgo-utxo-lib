@@ -366,4 +366,17 @@ module.exports = {
     coin: coins.BTC,
     hashFunctions: hashFunctions
   },
+  bitcoinzero: {
+    messagePrefix: "\x18BitcoinZero Signed Message: \n",
+    bech32: "bzx", // not known
+    bip32: {
+      public:  0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x4b,
+    scriptHash: 0x22,
+    wif: 0xd2,
+    coin: coins.BTC,
+    hashFunctions: hashFunctions
+  },
 }
