@@ -452,8 +452,8 @@ module.exports = {
     coin: coins.BTC,
     hashFunctions: hashFunctions
   },
-  btcp: {
-    messagePrefix: '\x18Bitcoin Gold Signed Message:\n',
+  /* btcp: { // TODO
+    messagePrefix: '\x18Bitcoin Private Signed Message:\n',
     bech32: 'btg',
     bip32: {
       public: 0x0488b21e,
@@ -463,11 +463,11 @@ module.exports = {
     scriptHash: 0x13af,
     wif: 0x80,
     coin: coins.BTG,
-    forkId: 0x40,
+    forkId: 0x2a,
     hashFunctions: hashFunctions
   },
-  anon: {
-    messagePrefix: '\x18Bitcoin Gold Signed Message:\n',
+  anon: { // TODO
+    messagePrefix: '\x18Anon Signed Message:\n',
     bech32: 'btg',
     bip32: {
       public: 0x0488b21e,
@@ -477,7 +477,7 @@ module.exports = {
     scriptHash: 0x5389,
     wif: 0x80,
     coin: coins.BTG,
-    forkId: 0x40,
+    forkId: 0x2a,
     hashFunctions: hashFunctions
   },
   zen: { // TODO
@@ -500,5 +500,5 @@ module.exports = {
     },
     coin: coins.ZEC,
     hashFunctions: hashFunctions
-  },
+  }, */
 }
