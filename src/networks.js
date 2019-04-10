@@ -456,7 +456,7 @@ module.exports = {
     },
     pubKeyHash: 0x52,
     scriptHash: 0x07,
-    wif: 0x80,
+    wif: 0xd2,
     coin: coins.BTC,
     hashFunctions: hashFunctions
   },
